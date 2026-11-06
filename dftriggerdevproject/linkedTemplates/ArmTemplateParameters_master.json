@@ -11,11 +11,26 @@
 		"LS_CSV_FILE_TO_PARUET_OUPUT_accountKey": {
 			"value": ""
 		},
+		"LS_EVENT_CSV_FILE_STORAGE_accountKey": {
+			"value": ""
+		},
+		"LS_EVENT_CSV_FILE_MOVE_PARQUET_accountKey": {
+			"value": ""
+		},
 		"LS_CSV_FILE_STORAGE_ADLS_INPUT_properties_typeProperties_url": {
 			"value": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
 		},
 		"LS_CSV_FILE_TO_PARUET_OUPUT_properties_typeProperties_url": {
 			"value": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
+		},
+		"LS_EVENT_CSV_FILE_STORAGE_properties_typeProperties_url": {
+			"value": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
+		},
+		"LS_EVENT_CSV_FILE_MOVE_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
+		},
+		"EVENT_MANNUAL_FILE_MOVE_properties_typeProperties_scope": {
+			"value": "/subscriptions/c1fa00d8-7ab6-47e1-9161-266d98deded3/resourceGroups/rstriggerproject/providers/Microsoft.Storage/storageAccounts/adlsdevcsvtriggerinput"
 		},
 		"containerUri": {
 			"value": ""
