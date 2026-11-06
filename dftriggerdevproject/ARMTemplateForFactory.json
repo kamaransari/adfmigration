@@ -446,6 +446,36 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/PL_COPY_ADLSCSV_TO_ADLSPARQUET')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MOVE_CSV_FILE_TO_PARQUET')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "All_CSV_FILE_MOVE_TO_ADLS",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 15,
+						"startTime": "2026-11-06T16:12:00",
+						"timeZone": "India Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/All_CSV_FILE_MOVE_TO_ADLS')]"
+			]
 		}
 	]
 }
