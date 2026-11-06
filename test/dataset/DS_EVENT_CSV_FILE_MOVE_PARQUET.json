@@ -1,0 +1,19 @@
+{
+	"name": "DS_EVENT_CSV_FILE_MOVE_PARQUET",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_EVENT_CSV_FILE_MOVE_PARQUET",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "outputeventcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

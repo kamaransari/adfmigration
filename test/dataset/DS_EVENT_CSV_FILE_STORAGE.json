@@ -1,0 +1,22 @@
+{
+	"name": "DS_EVENT_CSV_FILE_STORAGE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_EVENT_CSV_FILE_STORAGE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "inputeventcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

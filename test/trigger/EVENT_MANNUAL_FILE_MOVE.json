@@ -1,0 +1,24 @@
+{
+	"name": "EVENT_MANNUAL_FILE_MOVE",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_EVENT_MANNUAL_FILE_MOVE",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/inputeventcontainer/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/c1fa00d8-7ab6-47e1-9161-266d98deded3/resourceGroups/rstriggerproject/providers/Microsoft.Storage/storageAccounts/adlsdevcsvtriggerinput",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
