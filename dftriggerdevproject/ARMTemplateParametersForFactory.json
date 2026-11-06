@@ -5,23 +5,11 @@
 		"factoryName": {
 			"value": "dftriggerdevproject"
 		},
-		"LS_ALL_CSV_FILE_STORAGE_accountKey": {
-			"value": ""
-		},
-		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey": {
-			"value": ""
-		},
 		"LS_CSV_FILE_STORAGE_ADLS_INPUT_accountKey": {
 			"value": ""
 		},
 		"LS_CSV_FILE_TO_PARUET_OUPUT_accountKey": {
 			"value": ""
-		},
-		"LS_ALL_CSV_FILE_STORAGE_properties_typeProperties_url": {
-			"value": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
-		},
-		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url": {
-			"value": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
 		},
 		"LS_CSV_FILE_STORAGE_ADLS_INPUT_properties_typeProperties_url": {
 			"value": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
