@@ -15,13 +15,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CSV_FILE_TO_PARUET_OUPUT'"
 		},
-		"LS_EVENT_CSV_FILE_STORAGE_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_EVENT_CSV_FILE_STORAGE'"
-		},
 		"LS_EVENT_CSV_FILE_MOVE_PARQUET_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_EVENT_CSV_FILE_MOVE_PARQUET'"
+		},
+		"LS_EVENT_CSV_FILE_STORAGE_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_EVENT_CSV_FILE_STORAGE'"
 		},
 		"LS_CSV_FILE_STORAGE_ADLS_INPUT_properties_typeProperties_url": {
 			"type": "string",
@@ -31,13 +31,13 @@
 			"type": "string",
 			"defaultValue": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
 		},
-		"LS_EVENT_CSV_FILE_STORAGE_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
-		},
 		"LS_EVENT_CSV_FILE_MOVE_PARQUET_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
+		},
+		"LS_EVENT_CSV_FILE_STORAGE_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
 		},
 		"EVENT_MANNUAL_FILE_MOVE_properties_typeProperties_scope": {
 			"type": "string",
@@ -83,23 +83,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/LS_EVENT_CSV_FILE_STORAGE')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_EVENT_CSV_FILE_STORAGE_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_EVENT_CSV_FILE_STORAGE_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/LS_EVENT_CSV_FILE_MOVE_PARQUET')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -111,6 +94,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_EVENT_CSV_FILE_MOVE_PARQUET_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_EVENT_CSV_FILE_STORAGE')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_EVENT_CSV_FILE_STORAGE_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_EVENT_CSV_FILE_STORAGE_accountKey')]"
 					}
 				}
 			},
@@ -193,6 +193,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_EVENT_CSV_FILE_MOVE_PARQUET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_EVENT_CSV_FILE_MOVE_PARQUET",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "outputeventcontainer"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_EVENT_CSV_FILE_MOVE_PARQUET')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DS_EVENT_CSV_FILE_STORAGE')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -217,30 +241,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_EVENT_CSV_FILE_STORAGE')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EVENT_CSV_FILE_MOVE_PARQUET')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_EVENT_CSV_FILE_MOVE_PARQUET",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "outputeventcontainer"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_EVENT_CSV_FILE_MOVE_PARQUET')]"
 			]
 		},
 		{
@@ -345,7 +345,7 @@
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
 									"wildcardFolderPath": "*",
-									"wildcardFileName": "*",
+									"wildcardFileName": "*csv",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -398,36 +398,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SCH_BANKING_CSV_TRIGGER')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "PL_COPY_ADLSCSV_TO_ADLSPARQUET",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2026-11-06T09:34:00",
-						"timeZone": "India Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/PL_COPY_ADLSCSV_TO_ADLSPARQUET')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/EVENT_MANNUAL_FILE_MOVE')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -455,6 +425,36 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/PL_EVENT_MANNUAL_FILE_MOVE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SCH_BANKING_CSV_TRIGGER')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_COPY_ADLSCSV_TO_ADLSPARQUET",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2026-11-06T09:34:00",
+						"timeZone": "India Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_COPY_ADLSCSV_TO_ADLSPARQUET')]"
 			]
 		}
 	]
