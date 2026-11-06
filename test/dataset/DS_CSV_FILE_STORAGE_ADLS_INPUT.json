@@ -1,0 +1,49 @@
+{
+	"name": "DS_CSV_FILE_STORAGE_ADLS_INPUT",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_CSV_FILE_STORAGE_ADLS_INPUT",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "hr_employee_1000.csv",
+				"fileSystem": "inputcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Patient_ID",
+				"type": "String"
+			},
+			{
+				"name": "Patient_Name",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "Age",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "Registration_Date",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

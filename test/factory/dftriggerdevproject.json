@@ -1,0 +1,15 @@
+{
+	"name": "dftriggerdevproject",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "20149bf7-28bb-4a93-bd12-3ba505cfa94e",
+		"tenantId": "4ba742de-1a35-418c-b6bb-42d3d414c79b"
+	}
+}
