@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_ALL_CSV_FILE_STORAGE'"
 		},
+		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_ALL_CSV_FILE_TO_APRQUET_FORMAT'"
+		},
 		"LS_CSV_FILE_STORAGE_ADLS_INPUT_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CSV_FILE_STORAGE_ADLS_INPUT'"
@@ -19,23 +23,19 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CSV_FILE_TO_PARUET_OUPUT'"
 		},
-		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_ALL_CSV_FILE_TO_APRQUET_FORMAT'"
-		},
 		"LS_ALL_CSV_FILE_STORAGE_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
+		},
+		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
 		},
 		"LS_CSV_FILE_STORAGE_ADLS_INPUT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
 		},
 		"LS_CSV_FILE_TO_PARUET_OUPUT_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
-		},
-		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
 		}
@@ -56,6 +56,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_ALL_CSV_FILE_STORAGE_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_ALL_CSV_FILE_TO_APRQUET_FORMAT')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey')]"
 					}
 				}
 			},
@@ -90,23 +107,6 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_CSV_FILE_TO_PARUET_OUPUT_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_ALL_CSV_FILE_TO_APRQUET_FORMAT')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey')]"
 					}
 				}
 			},
@@ -162,6 +162,29 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_ALL_CSV_FILE_STORAGE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_ALL_CSV_FILE_TO_APRQUET_FORMAT')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_ALL_CSV_FILE_TO_APRQUET_FORMAT",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_ALL_CSV_FILE_TO_APRQUET_FORMAT')]"
 			]
 		},
 		{
@@ -239,29 +262,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_CSV_FILE_TO_PARUET_OUPUT')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_ALL_CSV_FILE_TO_APRQUET_FORMAT')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_ALL_CSV_FILE_TO_APRQUET_FORMAT",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_ALL_CSV_FILE_TO_APRQUET_FORMAT')]"
 			]
 		},
 		{
@@ -471,8 +471,7 @@
 						"frequency": "Day",
 						"interval": 1,
 						"startTime": "2026-11-06T15:48:00",
-						"timeZone": "India Standard Time",
-						"schedule": {}
+						"timeZone": "India Standard Time"
 					}
 				}
 			},

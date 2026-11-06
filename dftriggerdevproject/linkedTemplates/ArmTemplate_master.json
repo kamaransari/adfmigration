@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_ALL_CSV_FILE_STORAGE'"
 		},
+		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_ALL_CSV_FILE_TO_APRQUET_FORMAT'"
+		},
 		"LS_CSV_FILE_STORAGE_ADLS_INPUT_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CSV_FILE_STORAGE_ADLS_INPUT'"
@@ -19,23 +23,19 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CSV_FILE_TO_PARUET_OUPUT'"
 		},
-		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_ALL_CSV_FILE_TO_APRQUET_FORMAT'"
-		},
 		"LS_ALL_CSV_FILE_STORAGE_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
+		},
+		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
 		},
 		"LS_CSV_FILE_STORAGE_ADLS_INPUT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevcsvtriggerinput.dfs.core.windows.net/"
 		},
 		"LS_CSV_FILE_TO_PARUET_OUPUT_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
-		},
-		"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevcsvtriggeroutput.dfs.core.windows.net/"
 		},
@@ -69,26 +69,26 @@
 					"LS_ALL_CSV_FILE_STORAGE_accountKey": {
 						"value": "[parameters('LS_ALL_CSV_FILE_STORAGE_accountKey')]"
 					},
+					"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey": {
+						"value": "[parameters('LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey')]"
+					},
 					"LS_CSV_FILE_STORAGE_ADLS_INPUT_accountKey": {
 						"value": "[parameters('LS_CSV_FILE_STORAGE_ADLS_INPUT_accountKey')]"
 					},
 					"LS_CSV_FILE_TO_PARUET_OUPUT_accountKey": {
 						"value": "[parameters('LS_CSV_FILE_TO_PARUET_OUPUT_accountKey')]"
 					},
-					"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey": {
-						"value": "[parameters('LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_accountKey')]"
-					},
 					"LS_ALL_CSV_FILE_STORAGE_properties_typeProperties_url": {
 						"value": "[parameters('LS_ALL_CSV_FILE_STORAGE_properties_typeProperties_url')]"
+					},
+					"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url": {
+						"value": "[parameters('LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url')]"
 					},
 					"LS_CSV_FILE_STORAGE_ADLS_INPUT_properties_typeProperties_url": {
 						"value": "[parameters('LS_CSV_FILE_STORAGE_ADLS_INPUT_properties_typeProperties_url')]"
 					},
 					"LS_CSV_FILE_TO_PARUET_OUPUT_properties_typeProperties_url": {
 						"value": "[parameters('LS_CSV_FILE_TO_PARUET_OUPUT_properties_typeProperties_url')]"
-					},
-					"LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url": {
-						"value": "[parameters('LS_ALL_CSV_FILE_TO_APRQUET_FORMAT_properties_typeProperties_url')]"
 					}
 				}
 			},
