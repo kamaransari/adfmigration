@@ -230,7 +230,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "MYPROJECT - Copy (2).csv",
 						"fileSystem": "inputeventcontainer"
 					},
 					"columnDelimiter": ",",
@@ -345,8 +344,7 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
-									"wildcardFolderPath": "*",
-									"wildcardFileName": "*csv",
+									"wildcardFileName": "*.csv",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
