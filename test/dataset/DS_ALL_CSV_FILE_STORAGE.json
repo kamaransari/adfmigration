@@ -1,0 +1,47 @@
+{
+	"name": "DS_ALL_CSV_FILE_STORAGE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ALL_CSV_FILE_STORAGE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "inputcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Patient_ID",
+				"type": "String"
+			},
+			{
+				"name": "Patient_Name",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "Age",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "Registration_Date",
+				"type": "String"
+			}
+		]
+	}
+}
