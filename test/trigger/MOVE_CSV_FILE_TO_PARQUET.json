@@ -1,0 +1,24 @@
+{
+	"name": "MOVE_CSV_FILE_TO_PARQUET",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "All_CSV_FILE_MOVE_TO_ADLS",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2026-11-06T16:12:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
