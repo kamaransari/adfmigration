@@ -448,7 +448,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/MOVE_CSV_FILE_TO_PARQUET')]",
+			"name": "[concat(parameters('factoryName'), '/TRIGGER_ALL_FILE_MOVE_PARQUET')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -466,10 +466,11 @@
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
-						"frequency": "Minute",
-						"interval": 15,
-						"startTime": "2026-11-06T16:12:00",
-						"timeZone": "India Standard Time"
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2026-11-06T16:17:00",
+						"timeZone": "India Standard Time",
+						"schedule": {}
 					}
 				}
 			},
