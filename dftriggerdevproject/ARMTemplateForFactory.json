@@ -316,6 +316,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"fileName": "MYPROJECT - Copy (2).csv",
 						"fileSystem": "inputeventcontainer"
 					},
 					"columnDelimiter": ",",
