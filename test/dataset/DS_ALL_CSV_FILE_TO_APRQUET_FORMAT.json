@@ -1,0 +1,18 @@
+{
+	"name": "DS_ALL_CSV_FILE_TO_APRQUET_FORMAT",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ALL_CSV_FILE_TO_APRQUET_FORMAT",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
