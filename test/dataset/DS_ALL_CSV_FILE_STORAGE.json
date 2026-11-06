@@ -1,10 +1,6 @@
 {
 	"name": "DS_ALL_CSV_FILE_STORAGE",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "LS_ALL_CSV_FILE_STORAGE",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
